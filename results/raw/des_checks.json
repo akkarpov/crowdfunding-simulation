@@ -1,0 +1,2839 @@
+{
+  "cases": {
+    "Нулевая нагрузка": {
+      "engine": "Python DES",
+      "seed": 231,
+      "scenario": "Нулевая нагрузка",
+      "time_unit": "hour",
+      "observation_window": [
+        0,
+        12
+      ],
+      "stop_reason": "horizon",
+      "arrived": 0,
+      "terminal": 0,
+      "nonterminal": 0,
+      "active": 0,
+      "published": 0,
+      "outcomes": {},
+      "cost": 62,
+      "throughput": 0.0,
+      "payout_throughput": 0.0,
+      "utilization": 0.0,
+      "sla": {
+        "n": 0,
+        "on_time": 0,
+        "late": 0,
+        "unknown": 0,
+        "mature": 0,
+        "mature_late": 0,
+        "failure": null,
+        "lower": null,
+        "upper": null
+      },
+      "payment_sla": {
+        "n": 0,
+        "on_time": 0,
+        "late": 0,
+        "unknown": 0,
+        "mature": 0,
+        "mature_late": 0,
+        "failure": null,
+        "lower": null,
+        "upper": null
+      },
+      "support_sla": {
+        "n": 0,
+        "on_time": 0,
+        "late": 0,
+        "unknown": 0,
+        "mature": 0,
+        "mature_late": 0,
+        "failure": null,
+        "lower": null,
+        "upper": null
+      },
+      "moderation": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "p90": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "lifecycle": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "p90": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "payment_times": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "p90": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "payments": {},
+      "confirmed": 0,
+      "paid": 0,
+      "refunded": 0,
+      "held": 0,
+      "resources": {
+        "R1": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R2": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R3": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R4": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 4,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R5": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 4,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R6": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R7": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R8": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        }
+      }
+    },
+    "Малая нагрузка": {
+      "engine": "Python DES",
+      "seed": 231,
+      "scenario": "Малая нагрузка",
+      "time_unit": "hour",
+      "observation_window": [
+        0,
+        12
+      ],
+      "stop_reason": "horizon",
+      "arrived": 4,
+      "terminal": 4,
+      "nonterminal": 0,
+      "active": 0,
+      "published": 4,
+      "outcomes": {
+        "paid": 4
+      },
+      "cost": 62,
+      "throughput": 0.3333333333333333,
+      "payout_throughput": 0.3333333333333333,
+      "utilization": 0.015479799157181414,
+      "sla": {
+        "n": 4,
+        "on_time": 4,
+        "late": 0,
+        "unknown": 0,
+        "mature": 1,
+        "mature_late": 0,
+        "failure": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "payment_sla": {
+        "n": 8,
+        "on_time": 8,
+        "late": 0,
+        "unknown": 0,
+        "mature": 8,
+        "mature_late": 0,
+        "failure": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "support_sla": {
+        "n": 0,
+        "on_time": 0,
+        "late": 0,
+        "unknown": 0,
+        "mature": 0,
+        "mature_late": 0,
+        "failure": null,
+        "lower": null,
+        "upper": null
+      },
+      "moderation": {
+        "n": 4,
+        "mean": 0.31741404094297615,
+        "median": 0.31369738230380706,
+        "p90": 0.4533574989685241,
+        "p95": 0.47607778215596375,
+        "p99": 0.49425400870591546,
+        "max": 0.49879806534340343
+      },
+      "lifecycle": {
+        "n": 4,
+        "mean": 1.1513063661473262,
+        "median": 0.9690307870316199,
+        "p90": 1.8251790041506504,
+        "p95": 1.9453620839494556,
+        "p99": 2.0415085477885,
+        "max": 2.0655451637482614
+      },
+      "payment_times": {
+        "n": 8,
+        "mean": 0.10708885296220255,
+        "median": 0.08236005450570216,
+        "p90": 0.17742510435297187,
+        "p95": 0.23189300318681016,
+        "p99": 0.2754673222538808,
+        "max": 0.28636090202064857
+      },
+      "payments": {
+        "attempts": 8,
+        "credited": 8
+      },
+      "confirmed": 5122,
+      "paid": 5122,
+      "refunded": 0,
+      "held": 0,
+      "resources": {
+        "R1": {
+          "offered": 4,
+          "served": 4,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.010136458952970532,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 4,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 4,
+            "mean": 0.060818753717823366,
+            "median": 0.039700682584586845,
+            "p90": 0.12313762806262471,
+            "p95": 0.1388259652594524,
+            "p99": 0.15137663501691462,
+            "max": 0.1545143024562802
+          }
+        },
+        "R2": {
+          "offered": 3,
+          "served": 3,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.028420724417228694,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 3,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 3,
+            "mean": 0.2273657953378292,
+            "median": 0.23013986603637981,
+            "p90": 0.3164041040189819,
+            "p95": 0.3271871337668072,
+            "p99": 0.33581355756506737,
+            "max": 0.33797016351463244
+          }
+        },
+        "R3": {
+          "offered": 1,
+          "served": 1,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.014345156786963464,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 1,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 1,
+            "mean": 0.3442837628871234,
+            "median": 0.3442837628871234,
+            "p90": 0.3442837628871234,
+            "p95": 0.3442837628871234,
+            "p99": 0.3442837628871234,
+            "max": 0.3442837628871234
+          }
+        },
+        "R4": {
+          "offered": 8,
+          "served": 8,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 4,
+          "utilization": 0.014374752236901564,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 8,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 8,
+            "mean": 0.08624851342140927,
+            "median": 0.06106226643917048,
+            "p90": 0.16333418667472321,
+            "p95": 0.22106939060022757,
+            "p99": 0.26725755374063115,
+            "max": 0.2788045945257321
+          }
+        },
+        "R5": {
+          "offered": 12,
+          "served": 12,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 4,
+          "utilization": 0.007331026702952058,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 12,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 12,
+            "mean": 0.029324106811808286,
+            "median": 0.020583618771291747,
+            "p90": 0.07560740932500726,
+            "p95": 0.07884618730705212,
+            "p99": 0.07973512936032802,
+            "max": 0.07995736487364699
+          }
+        },
+        "R6": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R7": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R8": {
+          "offered": 4,
+          "served": 4,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.058484093534944215,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 4,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 4,
+            "mean": 0.35090456120966557,
+            "median": 0.17396244221495732,
+            "p90": 0.7987227524066173,
+            "p95": 0.905912763499684,
+            "p99": 0.9916647723741376,
+            "max": 1.0131027745927512
+          }
+        }
+      }
+    },
+    "Перегрузка и ручная проверка": {
+      "engine": "Python DES",
+      "seed": 231,
+      "scenario": "Перегрузка и ручная проверка",
+      "time_unit": "hour",
+      "observation_window": [
+        0,
+        12
+      ],
+      "stop_reason": "horizon",
+      "arrived": 327,
+      "terminal": 285,
+      "nonterminal": 42,
+      "active": 0,
+      "published": 9,
+      "outcomes": {
+        "technical": 276,
+        "paid": 8,
+        "rejected": 1
+      },
+      "cost": 57,
+      "throughput": 23.75,
+      "payout_throughput": 0.6666666666666666,
+      "utilization": 0.17483780272969596,
+      "sla": {
+        "n": 327,
+        "on_time": 10,
+        "late": 276,
+        "unknown": 41,
+        "mature": 104,
+        "mature_late": 97,
+        "failure": 0.9326923076923077,
+        "lower": 0.8440366972477065,
+        "upper": 0.9694189602446484
+      },
+      "payment_sla": {
+        "n": 21,
+        "on_time": 21,
+        "late": 0,
+        "unknown": 0,
+        "mature": 19,
+        "mature_late": 0,
+        "failure": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "support_sla": {
+        "n": 0,
+        "on_time": 0,
+        "late": 0,
+        "unknown": 0,
+        "mature": 0,
+        "mature_late": 0,
+        "failure": null,
+        "lower": null,
+        "upper": null
+      },
+      "moderation": {
+        "n": 10,
+        "mean": 3.6177361444622766,
+        "median": 3.511553885349676,
+        "p90": 5.430933106680693,
+        "p95": 5.436702186058879,
+        "p99": 5.441317449561428,
+        "max": 5.4424712654370655
+      },
+      "lifecycle": {
+        "n": 285,
+        "mean": 0.9458203256674381,
+        "median": 0.9576252420131679,
+        "p90": 1.6106091747947489,
+        "p95": 1.8587760195877516,
+        "p99": 5.142929536378603,
+        "max": 6.3687080351810295
+      },
+      "payment_times": {
+        "n": 21,
+        "mean": 0.08654872510846584,
+        "median": 0.07652550415472081,
+        "p90": 0.13073833392396783,
+        "p95": 0.17775568608745207,
+        "p99": 0.26463985883400865,
+        "max": 0.2863609020206477
+      },
+      "payments": {
+        "attempts": 21,
+        "credited": 21
+      },
+      "confirmed": 14891,
+      "paid": 13707,
+      "refunded": 0,
+      "held": 1184,
+      "resources": {
+        "R1": {
+          "offered": 327,
+          "served": 274,
+          "rejected": 15,
+          "busy": 2,
+          "queue": 36,
+          "capacity": 2,
+          "utilization": 0.9573919931045328,
+          "current_utilization": 1.0,
+          "average_queue": 20.25963958965075,
+          "max_queue": 40,
+          "waiting": {
+            "n": 276,
+            "mean": 0.795567230303286,
+            "median": 0.901399330646123,
+            "p90": 1.40937933660505,
+            "p95": 1.6313607618457984,
+            "p99": 1.8471108355490142,
+            "max": 1.8864613638061272
+          },
+          "service": {
+            "n": 274,
+            "mean": 0.0834141502347494,
+            "median": 0.058938750821163,
+            "p90": 0.1832664262186587,
+            "p95": 0.23257511391307115,
+            "p99": 0.44437391141086874,
+            "max": 0.7063474381402329
+          }
+        },
+        "R2": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R3": {
+          "offered": 274,
+          "served": 10,
+          "rejected": 261,
+          "busy": 1,
+          "queue": 2,
+          "capacity": 1,
+          "utilization": 0.9904849799565022,
+          "current_utilization": 1.0,
+          "average_queue": 1.906792609160699,
+          "max_queue": 2,
+          "waiting": {
+            "n": 11,
+            "mean": 1.9307557646692024,
+            "median": 1.5702691180209865,
+            "p90": 3.6860993519585135,
+            "p95": 4.08505096442506,
+            "p99": 4.404212254398297,
+            "max": 4.484002576891607
+          },
+          "service": {
+            "n": 10,
+            "mean": 1.1390604497768142,
+            "median": 0.9255017516416312,
+            "p90": 2.1451448187153486,
+            "p95": 2.6928026411764323,
+            "p99": 3.1309288991453013,
+            "max": 3.2404604636375183
+          }
+        },
+        "R4": {
+          "offered": 21,
+          "served": 21,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 4,
+          "utilization": 0.026182119351708055,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 21,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 21,
+            "mean": 0.05984484423247557,
+            "median": 0.04243743116859168,
+            "p90": 0.11384686902429088,
+            "p95": 0.1753829813559932,
+            "p99": 0.2581202718917844,
+            "max": 0.2788045945257321
+          }
+        },
+        "R5": {
+          "offered": 30,
+          "served": 30,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 4,
+          "utilization": 0.018136210884635313,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 30,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 30,
+            "mean": 0.02901793741541642,
+            "median": 0.022332441868510855,
+            "p90": 0.0665154929980361,
+            "p95": 0.07904821959188754,
+            "p99": 0.09137626115542684,
+            "max": 0.09604031738319604
+          }
+        },
+        "R6": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R7": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R8": {
+          "offered": 9,
+          "served": 8,
+          "rejected": 0,
+          "busy": 1,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.11968798237664129,
+          "current_utilization": 0.5,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 9,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 8,
+            "mean": 0.32589242775611094,
+            "median": 0.19906136156134896,
+            "p90": 0.798779053709159,
+            "p95": 0.905940914150955,
+            "p99": 0.9916704025043919,
+            "max": 1.0131027745927512
+          }
+        }
+      }
+    },
+    "Спор с возвратом": {
+      "engine": "Python DES",
+      "seed": 231,
+      "scenario": "Спор с возвратом",
+      "time_unit": "hour",
+      "observation_window": [
+        0,
+        12
+      ],
+      "stop_reason": "horizon",
+      "arrived": 4,
+      "terminal": 3,
+      "nonterminal": 1,
+      "active": 0,
+      "published": 4,
+      "outcomes": {
+        "disputed": 3
+      },
+      "cost": 62,
+      "throughput": 0.25,
+      "payout_throughput": 0.0,
+      "utilization": 0.050607534991802025,
+      "sla": {
+        "n": 4,
+        "on_time": 4,
+        "late": 0,
+        "unknown": 0,
+        "mature": 1,
+        "mature_late": 0,
+        "failure": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "payment_sla": {
+        "n": 8,
+        "on_time": 8,
+        "late": 0,
+        "unknown": 0,
+        "mature": 8,
+        "mature_late": 0,
+        "failure": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "support_sla": {
+        "n": 0,
+        "on_time": 0,
+        "late": 0,
+        "unknown": 0,
+        "mature": 0,
+        "mature_late": 0,
+        "failure": null,
+        "lower": null,
+        "upper": null
+      },
+      "moderation": {
+        "n": 4,
+        "mean": 0.2753860634297917,
+        "median": 0.3053757045689037,
+        "p90": 0.34233650411953037,
+        "p95": 0.34483300744000134,
+        "p99": 0.34683021009637816,
+        "max": 0.34732951076047236
+      },
+      "lifecycle": {
+        "n": 3,
+        "mean": 3.3111385537223206,
+        "median": 3.1164996169572055,
+        "p90": 4.226901892681395,
+        "p95": 4.365702177146919,
+        "p99": 4.476742404719339,
+        "max": 4.504502461612443
+      },
+      "payment_times": {
+        "n": 8,
+        "mean": 0.10708885296220255,
+        "median": 0.08236005450570216,
+        "p90": 0.17742510435297187,
+        "p95": 0.23189300318681016,
+        "p99": 0.2754673222538808,
+        "max": 0.28636090202064857
+      },
+      "payments": {
+        "attempts": 8,
+        "credited": 8
+      },
+      "confirmed": 5122,
+      "paid": 0,
+      "refunded": 4044,
+      "held": 1078,
+      "resources": {
+        "R1": {
+          "offered": 4,
+          "served": 4,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.010136458952970532,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 4,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 4,
+            "mean": 0.060818753717823366,
+            "median": 0.039700682584586845,
+            "p90": 0.12313762806262471,
+            "p95": 0.1388259652594524,
+            "p99": 0.15137663501691462,
+            "max": 0.1545143024562802
+          }
+        },
+        "R2": {
+          "offered": 4,
+          "served": 4,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.035761218285328085,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 4,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 4,
+            "mean": 0.21456730971196813,
+            "median": 0.2031558594353824,
+            "p90": 0.3056210742711567,
+            "p95": 0.3217956188928945,
+            "p99": 0.33473525459028486,
+            "max": 0.33797016351463244
+          }
+        },
+        "R3": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R4": {
+          "offered": 8,
+          "served": 8,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 4,
+          "utilization": 0.014374752236901564,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 8,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 8,
+            "mean": 0.08624851342140927,
+            "median": 0.06106226643917048,
+            "p90": 0.16333418667472321,
+            "p95": 0.22106939060022757,
+            "p99": 0.26725755374063115,
+            "max": 0.2788045945257321
+          }
+        },
+        "R5": {
+          "offered": 12,
+          "served": 12,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 4,
+          "utilization": 0.007331026702952058,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 12,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 12,
+            "mean": 0.029324106811808286,
+            "median": 0.020583618771291747,
+            "p90": 0.07560740932500726,
+            "p95": 0.07884618730705212,
+            "p99": 0.07973512936032802,
+            "max": 0.07995736487364699
+          }
+        },
+        "R6": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R7": {
+          "offered": 4,
+          "served": 3,
+          "rejected": 0,
+          "busy": 1,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.41676611480001435,
+          "current_utilization": 0.5,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 4,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 3,
+            "mean": 2.6507875802081884,
+            "median": 2.5574714759953983,
+            "p90": 3.2776638341589996,
+            "p95": 3.3676878789294498,
+            "p99": 3.4397071147458096,
+            "max": 3.4577119236999
+          }
+        },
+        "R8": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        }
+      }
+    },
+    "Ошибка платежа и поддержка": {
+      "engine": "Python DES",
+      "seed": 231,
+      "scenario": "Ошибка платежа и поддержка",
+      "time_unit": "hour",
+      "observation_window": [
+        0,
+        12
+      ],
+      "stop_reason": "horizon",
+      "arrived": 4,
+      "terminal": 4,
+      "nonterminal": 0,
+      "active": 0,
+      "published": 4,
+      "outcomes": {
+        "expired": 4
+      },
+      "cost": 62,
+      "throughput": 0.3333333333333333,
+      "payout_throughput": 0.0,
+      "utilization": 0.05823281460699783,
+      "sla": {
+        "n": 4,
+        "on_time": 4,
+        "late": 0,
+        "unknown": 0,
+        "mature": 1,
+        "mature_late": 0,
+        "failure": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "payment_sla": {
+        "n": 20,
+        "on_time": 0,
+        "late": 20,
+        "unknown": 0,
+        "mature": 20,
+        "mature_late": 20,
+        "failure": 1.0,
+        "lower": 1.0,
+        "upper": 1.0
+      },
+      "support_sla": {
+        "n": 20,
+        "on_time": 20,
+        "late": 0,
+        "unknown": 0,
+        "mature": 17,
+        "mature_late": 0,
+        "failure": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "moderation": {
+        "n": 4,
+        "mean": 0.31741404094297615,
+        "median": 0.31369738230380706,
+        "p90": 0.4533574989685241,
+        "p95": 0.47607778215596375,
+        "p99": 0.49425400870591546,
+        "max": 0.49879806534340343
+      },
+      "lifecycle": {
+        "n": 4,
+        "mean": 2.6323026608927935,
+        "median": 2.4287696357097257,
+        "p90": 3.7215157055587467,
+        "p95": 3.9111660862636795,
+        "p99": 4.062886390827626,
+        "max": 4.100816466968613
+      },
+      "payment_times": {
+        "n": 20,
+        "mean": 1.2967803142358245,
+        "median": 1.0840514772330891,
+        "p90": 1.991706138409287,
+        "p95": 2.1847217110581423,
+        "p99": 3.3918651442091567,
+        "max": 3.693651002496913
+      },
+      "payments": {
+        "attempts": 40,
+        "problems": 40,
+        "retries": 20,
+        "failed": 20
+      },
+      "confirmed": 0,
+      "paid": 0,
+      "refunded": 0,
+      "held": 0,
+      "resources": {
+        "R1": {
+          "offered": 4,
+          "served": 4,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.010136458952970532,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 4,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 4,
+            "mean": 0.060818753717823366,
+            "median": 0.039700682584586845,
+            "p90": 0.12313762806262471,
+            "p95": 0.1388259652594524,
+            "p99": 0.15137663501691462,
+            "max": 0.1545143024562802
+          }
+        },
+        "R2": {
+          "offered": 3,
+          "served": 3,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.028420724417228694,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 3,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 3,
+            "mean": 0.2273657953378292,
+            "median": 0.23013986603637981,
+            "p90": 0.3164041040189819,
+            "p95": 0.3271871337668072,
+            "p99": 0.33581355756506737,
+            "max": 0.33797016351463244
+          }
+        },
+        "R3": {
+          "offered": 1,
+          "served": 1,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.014345156786963464,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 1,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 1,
+            "mean": 0.3442837628871234,
+            "median": 0.3442837628871234,
+            "p90": 0.3442837628871234,
+            "p95": 0.3442837628871234,
+            "p99": 0.3442837628871234,
+            "max": 0.3442837628871234
+          }
+        },
+        "R4": {
+          "offered": 40,
+          "served": 40,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 4,
+          "utilization": 0.03815449065118997,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 40,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 40,
+            "mean": 0.04578538878142791,
+            "median": 0.03514754580247084,
+            "p90": 0.09242667612456121,
+            "p95": 0.11534442063053241,
+            "p99": 0.22615198410885456,
+            "max": 0.2788045945257321
+          }
+        },
+        "R5": {
+          "offered": 4,
+          "served": 4,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 4,
+          "utilization": 0.0038576367794865285,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 4,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 4,
+            "mean": 0.04629164135383834,
+            "median": 0.05064356695409501,
+            "p90": 0.0793512680191407,
+            "p95": 0.07965431644639384,
+            "p99": 0.07989675518819636,
+            "max": 0.07995736487364699
+          }
+        },
+        "R6": {
+          "offered": 20,
+          "served": 20,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.4454015510514626,
+          "current_utilization": 0.0,
+          "average_queue": 1.117879459018689,
+          "max_queue": 9,
+          "waiting": {
+            "n": 20,
+            "mean": 0.6707276754112131,
+            "median": 0.8172158584563667,
+            "p90": 1.4092005171461526,
+            "p95": 1.483241716775535,
+            "p99": 1.5023088434513867,
+            "max": 1.5070756251203496
+          },
+          "service": {
+            "n": 20,
+            "mean": 0.5344818612617553,
+            "median": 0.33490853531778636,
+            "p90": 1.1005905644263632,
+            "p95": 1.2484327170946132,
+            "p99": 2.7332099679787794,
+            "max": 3.1044042806998244
+          }
+        },
+        "R7": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R8": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        }
+      }
+    },
+    "Недостижимая цель": {
+      "engine": "Python DES",
+      "seed": 231,
+      "scenario": "Недостижимая цель",
+      "time_unit": "hour",
+      "observation_window": [
+        0,
+        12
+      ],
+      "stop_reason": "horizon",
+      "arrived": 4,
+      "terminal": 4,
+      "nonterminal": 0,
+      "active": 0,
+      "published": 4,
+      "outcomes": {
+        "expired": 4
+      },
+      "cost": 62,
+      "throughput": 0.3333333333333333,
+      "payout_throughput": 0.0,
+      "utilization": 0.013475736054910373,
+      "sla": {
+        "n": 4,
+        "on_time": 4,
+        "late": 0,
+        "unknown": 0,
+        "mature": 1,
+        "mature_late": 0,
+        "failure": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "payment_sla": {
+        "n": 20,
+        "on_time": 20,
+        "late": 0,
+        "unknown": 0,
+        "mature": 20,
+        "mature_late": 0,
+        "failure": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "support_sla": {
+        "n": 1,
+        "on_time": 1,
+        "late": 0,
+        "unknown": 0,
+        "mature": 1,
+        "mature_late": 0,
+        "failure": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "moderation": {
+        "n": 4,
+        "mean": 0.31741404094297615,
+        "median": 0.31369738230380706,
+        "p90": 0.4533574989685241,
+        "p95": 0.47607778215596375,
+        "p99": 0.49425400870591546,
+        "max": 0.49879806534340343
+      },
+      "lifecycle": {
+        "n": 4,
+        "mean": 1.3637056822968145,
+        "median": 1.364340949257902,
+        "p90": 1.4794840582195734,
+        "p95": 1.4911020950982468,
+        "p99": 1.5003965246011854,
+        "max": 1.5027201319769201
+      },
+      "payment_times": {
+        "n": 20,
+        "mean": 0.08896769619956157,
+        "median": 0.08152214442332673,
+        "p90": 0.13961639727793312,
+        "p95": 0.22286106419147295,
+        "p99": 0.2736609344548133,
+        "max": 0.28636090202064857
+      },
+      "payments": {
+        "attempts": 21,
+        "credited": 20,
+        "problems": 1,
+        "retries": 1
+      },
+      "confirmed": 17017,
+      "paid": 0,
+      "refunded": 17017,
+      "held": 0,
+      "resources": {
+        "R1": {
+          "offered": 4,
+          "served": 4,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.010136458952970532,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 4,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 4,
+            "mean": 0.060818753717823366,
+            "median": 0.039700682584586845,
+            "p90": 0.12313762806262471,
+            "p95": 0.1388259652594524,
+            "p99": 0.15137663501691462,
+            "max": 0.1545143024562802
+          }
+        },
+        "R2": {
+          "offered": 3,
+          "served": 3,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.028420724417228694,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 3,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 3,
+            "mean": 0.2273657953378292,
+            "median": 0.23013986603637981,
+            "p90": 0.3164041040189819,
+            "p95": 0.3271871337668072,
+            "p99": 0.33581355756506737,
+            "max": 0.33797016351463244
+          }
+        },
+        "R3": {
+          "offered": 1,
+          "served": 1,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.014345156786963464,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 1,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 1,
+            "mean": 0.3442837628871234,
+            "median": 0.3442837628871234,
+            "p90": 0.3442837628871234,
+            "p95": 0.3442837628871234,
+            "p99": 0.3442837628871234,
+            "max": 0.3442837628871234
+          }
+        },
+        "R4": {
+          "offered": 21,
+          "served": 21,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 4,
+          "utilization": 0.023458227433833485,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 21,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 21,
+            "mean": 0.053618805563047885,
+            "median": 0.04340114941457076,
+            "p90": 0.1026105047580403,
+            "p95": 0.11384686902429088,
+            "p99": 0.24581304942544396,
+            "max": 0.2788045945257321
+          }
+        },
+        "R5": {
+          "offered": 24,
+          "served": 24,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 4,
+          "utilization": 0.014953595941230293,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 24,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 24,
+            "mean": 0.02990719188246059,
+            "median": 0.021216462049384016,
+            "p90": 0.06406658930166277,
+            "p95": 0.07594517181057733,
+            "p99": 0.0794926906185255,
+            "max": 0.07995736487364699
+          }
+        },
+        "R6": {
+          "offered": 1,
+          "served": 1,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.005031373641813479,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 1,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 1,
+            "mean": 0.12075296740352351,
+            "median": 0.12075296740352351,
+            "p90": 0.12075296740352351,
+            "p95": 0.12075296740352351,
+            "p99": 0.12075296740352351,
+            "max": 0.12075296740352351
+          }
+        },
+        "R7": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R8": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        }
+      }
+    },
+    "Остановка по счётчику": {
+      "engine": "Python DES",
+      "seed": 231,
+      "scenario": "Остановка по счётчику",
+      "time_unit": "hour",
+      "observation_window": [
+        0,
+        5.873979121333185
+      ],
+      "stop_reason": "terminal_limit",
+      "arrived": 2,
+      "terminal": 2,
+      "nonterminal": 0,
+      "active": 0,
+      "published": 2,
+      "outcomes": {
+        "paid": 2
+      },
+      "cost": 62,
+      "throughput": 0.3404846967767347,
+      "payout_throughput": 0.3404846967767347,
+      "utilization": 0.011213320159867712,
+      "sla": {
+        "n": 2,
+        "on_time": 2,
+        "late": 0,
+        "unknown": 0,
+        "mature": 0,
+        "mature_late": 0,
+        "failure": null,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "payment_sla": {
+        "n": 5,
+        "on_time": 5,
+        "late": 0,
+        "unknown": 0,
+        "mature": 3,
+        "mature_late": 0,
+        "failure": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "support_sla": {
+        "n": 0,
+        "on_time": 0,
+        "late": 0,
+        "unknown": 0,
+        "mature": 0,
+        "mature_late": 0,
+        "failure": null,
+        "lower": null,
+        "upper": null
+      },
+      "moderation": {
+        "n": 2,
+        "mean": 0.2117642938340144,
+        "median": 0.2117642938340144,
+        "p90": 0.2664050618445163,
+        "p95": 0.273235157845829,
+        "p99": 0.2786992346468792,
+        "max": 0.28006525384714176
+      },
+      "lifecycle": {
+        "n": 2,
+        "mean": 0.6376778345424093,
+        "median": 0.6376778345424093,
+        "p90": 0.6665251207540942,
+        "p95": 0.6701310315305549,
+        "p99": 0.6730157601517233,
+        "max": 0.6737369423070154
+      },
+      "payment_times": {
+        "n": 5,
+        "mean": 0.0898813678236416,
+        "median": 0.0761107058804269,
+        "p90": 0.1287336793872546,
+        "p95": 0.1297360066556111,
+        "p99": 0.1305378684702963,
+        "max": 0.1307383339239676
+      },
+      "payments": {
+        "attempts": 5,
+        "credited": 5
+      },
+      "confirmed": 2958,
+      "paid": 2958,
+      "refunded": 0,
+      "held": 0,
+      "resources": {
+        "R1": {
+          "offered": 2,
+          "served": 2,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.006758737435821198,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 2,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 2,
+            "mean": 0.039700682584586845,
+            "median": 0.039700682584586845,
+            "p90": 0.04788044676552683,
+            "p95": 0.04890291728814432,
+            "p99": 0.04972089370623832,
+            "max": 0.04992538781076182
+          }
+        },
+        "R2": {
+          "offered": 2,
+          "served": 2,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.029292513251285675,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 2,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 2,
+            "mean": 0.1720636112494276,
+            "median": 0.1720636112494276,
+            "p90": 0.21852461507898938,
+            "p95": 0.22433224055768458,
+            "p99": 0.22897834094064076,
+            "max": 0.23013986603637981
+          }
+        },
+        "R3": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R4": {
+          "offered": 5,
+          "served": 5,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 4,
+          "utilization": 0.014486429261996827,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 5,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 5,
+            "mean": 0.06807438642211161,
+            "median": 0.0658294859114569,
+            "p90": 0.09874716897518636,
+            "p95": 0.10629701899973862,
+            "p99": 0.11233689901938043,
+            "max": 0.11384686902429088
+          }
+        },
+        "R5": {
+          "offered": 7,
+          "served": 7,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 4,
+          "utilization": 0.00903741566738837,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 7,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 7,
+            "mean": 0.030334623394884963,
+            "median": 0.023350091882897352,
+            "p90": 0.0647673749629218,
+            "p95": 0.07236236991828437,
+            "p99": 0.07843836588257445,
+            "max": 0.07995736487364699
+          }
+        },
+        "R6": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R7": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R8": {
+          "offered": 2,
+          "served": 2,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.029034261052799853,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 2,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 2,
+            "mean": 0.17054664322748364,
+            "median": 0.17054664322748364,
+            "p90": 0.2729114891566734,
+            "p95": 0.28570709489782214,
+            "p99": 0.2959435794907411,
+            "max": 0.2985027006389709
+          }
+        }
+      }
+    },
+    "Повтор": {
+      "engine": "Python DES",
+      "seed": 231,
+      "scenario": "Повтор",
+      "time_unit": "hour",
+      "observation_window": [
+        0,
+        12
+      ],
+      "stop_reason": "horizon",
+      "arrived": 4,
+      "terminal": 4,
+      "nonterminal": 0,
+      "active": 0,
+      "published": 4,
+      "outcomes": {
+        "paid": 4
+      },
+      "cost": 62,
+      "throughput": 0.3333333333333333,
+      "payout_throughput": 0.3333333333333333,
+      "utilization": 0.015479799157181414,
+      "sla": {
+        "n": 4,
+        "on_time": 4,
+        "late": 0,
+        "unknown": 0,
+        "mature": 1,
+        "mature_late": 0,
+        "failure": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "payment_sla": {
+        "n": 8,
+        "on_time": 8,
+        "late": 0,
+        "unknown": 0,
+        "mature": 8,
+        "mature_late": 0,
+        "failure": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "support_sla": {
+        "n": 0,
+        "on_time": 0,
+        "late": 0,
+        "unknown": 0,
+        "mature": 0,
+        "mature_late": 0,
+        "failure": null,
+        "lower": null,
+        "upper": null
+      },
+      "moderation": {
+        "n": 4,
+        "mean": 0.31741404094297615,
+        "median": 0.31369738230380706,
+        "p90": 0.4533574989685241,
+        "p95": 0.47607778215596375,
+        "p99": 0.49425400870591546,
+        "max": 0.49879806534340343
+      },
+      "lifecycle": {
+        "n": 4,
+        "mean": 1.1513063661473262,
+        "median": 0.9690307870316199,
+        "p90": 1.8251790041506504,
+        "p95": 1.9453620839494556,
+        "p99": 2.0415085477885,
+        "max": 2.0655451637482614
+      },
+      "payment_times": {
+        "n": 8,
+        "mean": 0.10708885296220255,
+        "median": 0.08236005450570216,
+        "p90": 0.17742510435297187,
+        "p95": 0.23189300318681016,
+        "p99": 0.2754673222538808,
+        "max": 0.28636090202064857
+      },
+      "payments": {
+        "attempts": 8,
+        "credited": 8
+      },
+      "confirmed": 5122,
+      "paid": 5122,
+      "refunded": 0,
+      "held": 0,
+      "resources": {
+        "R1": {
+          "offered": 4,
+          "served": 4,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.010136458952970532,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 4,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 4,
+            "mean": 0.060818753717823366,
+            "median": 0.039700682584586845,
+            "p90": 0.12313762806262471,
+            "p95": 0.1388259652594524,
+            "p99": 0.15137663501691462,
+            "max": 0.1545143024562802
+          }
+        },
+        "R2": {
+          "offered": 3,
+          "served": 3,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.028420724417228694,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 3,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 3,
+            "mean": 0.2273657953378292,
+            "median": 0.23013986603637981,
+            "p90": 0.3164041040189819,
+            "p95": 0.3271871337668072,
+            "p99": 0.33581355756506737,
+            "max": 0.33797016351463244
+          }
+        },
+        "R3": {
+          "offered": 1,
+          "served": 1,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.014345156786963464,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 1,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 1,
+            "mean": 0.3442837628871234,
+            "median": 0.3442837628871234,
+            "p90": 0.3442837628871234,
+            "p95": 0.3442837628871234,
+            "p99": 0.3442837628871234,
+            "max": 0.3442837628871234
+          }
+        },
+        "R4": {
+          "offered": 8,
+          "served": 8,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 4,
+          "utilization": 0.014374752236901564,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 8,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 8,
+            "mean": 0.08624851342140927,
+            "median": 0.06106226643917048,
+            "p90": 0.16333418667472321,
+            "p95": 0.22106939060022757,
+            "p99": 0.26725755374063115,
+            "max": 0.2788045945257321
+          }
+        },
+        "R5": {
+          "offered": 12,
+          "served": 12,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 4,
+          "utilization": 0.007331026702952058,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 12,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 12,
+            "mean": 0.029324106811808286,
+            "median": 0.020583618771291747,
+            "p90": 0.07560740932500726,
+            "p95": 0.07884618730705212,
+            "p99": 0.07973512936032802,
+            "max": 0.07995736487364699
+          }
+        },
+        "R6": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R7": {
+          "offered": 0,
+          "served": 0,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.0,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "service": {
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "p90": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "R8": {
+          "offered": 4,
+          "served": 4,
+          "rejected": 0,
+          "busy": 0,
+          "queue": 0,
+          "capacity": 2,
+          "utilization": 0.058484093534944215,
+          "current_utilization": 0.0,
+          "average_queue": 0.0,
+          "max_queue": 0,
+          "waiting": {
+            "n": 4,
+            "mean": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "service": {
+            "n": 4,
+            "mean": 0.35090456120966557,
+            "median": 0.17396244221495732,
+            "p90": 0.7987227524066173,
+            "p95": 0.905912763499684,
+            "p99": 0.9916647723741376,
+            "max": 1.0131027745927512
+          }
+        }
+      }
+    }
+  },
+  "trace": [
+    {
+      "hour": 1.9276455813363464,
+      "project": 1,
+      "event": "подача",
+      "amount_kopecks": 0
+    },
+    {
+      "hour": 2.2310609270663857,
+      "project": 1,
+      "event": "публикация",
+      "amount_kopecks": 0
+    },
+    {
+      "hour": 2.2722867434588783,
+      "project": 1,
+      "event": "пожертвование",
+      "amount_kopecks": 580
+    },
+    {
+      "hour": 2.3348110458080464,
+      "project": 1,
+      "event": "пожертвование",
+      "amount_kopecks": 518
+    },
+    {
+      "hour": 2.340544669671983,
+      "project": 1,
+      "event": "зачисление",
+      "amount_kopecks": 580
+    },
+    {
+      "hour": 2.355935388374186,
+      "project": 1,
+      "event": "пожертвование",
+      "amount_kopecks": 650
+    },
+    {
+      "hour": 2.4605377433902316,
+      "project": 1,
+      "event": "зачисление",
+      "amount_kopecks": 518
+    },
+    {
+      "hour": 2.4866737222981534,
+      "project": 1,
+      "event": "зачисление",
+      "amount_kopecks": 650
+    },
+    {
+      "hour": 2.5292643081141497,
+      "project": 1,
+      "event": "paid",
+      "amount_kopecks": 1748
+    },
+    {
+      "hour": 5.200242179026169,
+      "project": 2,
+      "event": "подача",
+      "amount_kopecks": 0
+    },
+    {
+      "hour": 5.423662877720703,
+      "project": 2,
+      "event": "публикация",
+      "amount_kopecks": 0
+    },
+    {
+      "hour": 5.461118369314018,
+      "project": 2,
+      "event": "пожертвование",
+      "amount_kopecks": 629
+    },
+    {
+      "hour": 5.52690324517569,
+      "project": 2,
+      "event": "пожертвование",
+      "amount_kopecks": 581
+    },
+    {
+      "hour": 5.537229075194445,
+      "project": 2,
+      "event": "зачисление",
+      "amount_kopecks": 629
+    },
+    {
+      "hour": 5.575476420694214,
+      "project": 2,
+      "event": "зачисление",
+      "amount_kopecks": 581
+    },
+    {
+      "hour": 5.873979121333185,
+      "project": 2,
+      "event": "paid",
+      "amount_kopecks": 1210
+    },
+    {
+      "hour": 6.929724470925349,
+      "project": 3,
+      "event": "подача",
+      "amount_kopecks": 0
+    },
+    {
+      "hour": 7.432444602902269,
+      "project": 3,
+      "event": "публикация",
+      "amount_kopecks": 0
+    },
+    {
+      "hour": 8.112293239462844,
+      "project": 3,
+      "event": "пожертвование",
+      "amount_kopecks": 1086
+    },
+    {
+      "hour": 8.14462691889063,
+      "project": 3,
+      "event": "зачисление",
+      "amount_kopecks": 1086
+    },
+    {
+      "hour": 8.194049102681573,
+      "project": 3,
+      "event": "paid",
+      "amount_kopecks": 1086
+    },
+    {
+      "hour": 8.89753359626871,
+      "project": 4,
+      "event": "подача",
+      "amount_kopecks": 0
+    },
+    {
+      "hour": 9.322800149054475,
+      "project": 4,
+      "event": "публикация",
+      "amount_kopecks": 0
+    },
+    {
+      "hour": 9.606658242279694,
+      "project": 4,
+      "event": "пожертвование",
+      "amount_kopecks": 557
+    },
+    {
+      "hour": 9.663615083403572,
+      "project": 4,
+      "event": "пожертвование",
+      "amount_kopecks": 521
+    },
+    {
+      "hour": 9.695267645410672,
+      "project": 4,
+      "event": "зачисление",
+      "amount_kopecks": 557
+    },
+    {
+      "hour": 9.94997598542422,
+      "project": 4,
+      "event": "зачисление",
+      "amount_kopecks": 521
+    },
+    {
+      "hour": 10.963078760016971,
+      "project": 4,
+      "event": "paid",
+      "amount_kopecks": 1078
+    }
+  ]
+}

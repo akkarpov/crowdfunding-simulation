@@ -9,7 +9,7 @@
 | E2A | Нативный DES на Process Modeling Library | ТЗ §2 | 2 | models/ | Открытие, компиляция, прогон ветвей | NOT_STARTED |
 | E2B | Балансы, независимые платежи, R1–R8, остановка, метрики | ТЗ §2 | 2 | models/, results/raw/ | Целевые проверки | NOT_STARTED |
 | E2C | 2D/3D с единой моделью и русскими подписями | ТЗ §2, визуальный стандарт | 2 | models/, figures/ | Проверка фактических экранов | NOT_STARTED |
-| E3 | Узкие места, SLA, когорты, сегменты, мощность | ТЗ §3 | 3 | experiments/, results/, figures/ | Парные серии, интервалы, воспроизведение | NOT_STARTED |
+| E3 | Узкие места, SLA, когорты, сегменты, мощность | ТЗ §3 | 3 | experiments/, results/, figures/ | Парные серии, интервалы, воспроизведение | VERIFIED (эталонный DES) |
 | E4A | Управление и нативный Parameter Variation | ТЗ §4.1–4.2 | 4 | models/, experiments/ | Прогоны и факторы | NOT_STARTED |
 | E4B | OptQuest с ≥100 итерациями и ≥3 повторами, независимая проверка | ТЗ §4.3 | 4 | models/, results/ | Журнал оптимизатора и новые seeds | NOT_STARTED |
 | E5 | M/M/c/K в AnyLogic и проверка математикой и DES | ТЗ §5 | 5 | models/, analysis/, results/ | Нормировка, поток, сопоставление | NOT_STARTED |
