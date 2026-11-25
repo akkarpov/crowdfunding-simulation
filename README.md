@@ -1,1 +1,10 @@
-# crowdfunding-simulation
+# Имитационное моделирование краудфандинговой платформы
+
+Исследование очередей, технических сроков и мощности платформы с помощью DES, ABM, SD и марковской модели.
+
+- [Спецификация модели](SPECIFICATION.md)
+- [Матрица требований](REQUIREMENTS.md)
+- [Состояние работ и проверок](STATUS.md)
+- [Исходник схемы](figures/platform.mmd) и [схема SVG](figures/platform.svg)
+
+Базовые параметры хранятся в `config/baseline.json`. Проверка параметров и построение схемы: `python analysis/verify_spec.py`.
