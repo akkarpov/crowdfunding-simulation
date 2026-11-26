@@ -72,6 +72,31 @@ def sd(source, scenario):
     print(f"SD {case} · 480 ч · ошибка баланса {balance:.3g} · выплат {paid[-1]:.2f}")
 
 
+def plot_sd():
+    import matplotlib.pyplot as plt
+    from analysis.capacity_results import COLORS, save_figure
+
+    panels = (("manual", "Проекты в очереди R3"), ("capacity", "Каналы R3"),
+              ("paid", "Накопленные выплаты"))
+    titles = ("База", "Рост спроса", "Шок мощности")
+    fig, axes = plt.subplots(len(panels), 1, figsize=(9.5, 8), sharex=True)
+    for case, color, title in zip(SD_CASES[:3], COLORS, titles):
+        trace = rows(ROOT / f"results/native/sd-{case}/series.csv")
+        times = array(trace, ("hour",)).ravel()
+        for axis, (key, label) in zip(axes, panels, strict=True):
+            values = array(trace, (key,)).ravel()
+            if key == "manual":
+                values = np.maximum(values - array(trace, ("capacity",)).ravel(), 0)
+            axis.plot(times, values, color=color, label=title)
+            axis.set_ylabel(label)
+    for axis in axes:
+        axis.axvspan(168, 240, color="#CBD5E1", alpha=.26)
+    axes[0].legend(loc="lower right")
+    axes[-1].set_xlabel("Модельное время, ч")
+    fig.suptitle("Системная динамика · сценарии AnyLogic")
+    save_figure(fig, "sd_native")
+
+
 def archive(case, paths):
     folder = ROOT / "results/native" / case
     folder.mkdir(parents=True, exist_ok=True)
@@ -80,12 +105,16 @@ def archive(case, paths):
 
 
 if __name__ == "__main__":
+    import sys
+    sys.path.insert(0, str(ROOT))
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("model", choices=("markov", "sd"))
+    parser.add_argument("model", choices=("markov", "sd", "sd-plot"))
     parser.add_argument("--source", type=Path, default=Path(tempfile.gettempdir()))
     parser.add_argument("--scenario", type=int, choices=range(len(SD_CASES)), default=0)
     args = parser.parse_args()
     if args.model == "markov":
         markov(args.source)
+    elif args.model == "sd-plot":
+        plot_sd()
     else:
         sd(args.source, args.scenario)

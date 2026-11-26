@@ -2,6 +2,7 @@
 import argparse
 from copy import deepcopy
 import json
+import re
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
@@ -207,7 +208,9 @@ void record(boolean scheduleNext) {{
     folder = ROOT / ("models/markov" if name == "ManualQueueMarkov" else "models/sd")
     folder.mkdir(parents=True, exist_ok=True)
     ET.indent(doc, space="  ")
-    doc.write(folder / (name + ".alp"), encoding="utf-8", xml_declaration=True)
+    xml = ET.tostring(doc.getroot(), encoding="utf-8", xml_declaration=True)
+    xml = re.sub(rb"(<(?:Inputs|Parameters)>)[ \t]+(?=\n)", rb"\1", xml)
+    (folder / (name + ".alp")).write_bytes(xml)
 
 
 def audit(suffix, expr, message):
