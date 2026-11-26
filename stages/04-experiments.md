@@ -61,10 +61,13 @@
 
 Capacity planning рекомендует R2=1, R3=3, R4=4 за 65 у.е. по минимальной стоимости при выполнении ограничений на длинном горизонте. Нативный короткий поиск взвешивает поток и суммарную загрузку. Дополнительные каналы R4 снижают долю времени занятости каждого платёжного канала при множественных транзакциях проекта. Отличия от короткого Python-поиска также чувствительны к seeds и к реализации очередей. Длинные интервалы для проверенных Python-конфигураций приведены отдельно от коротких средних OptQuest.
 
+Лучшая найденная OptQuest конфигурация 2/3/6 независимо проверена в эталонной DES на горизонте 2160 ч с десятью новыми seeds 5601–5610. Средний SLA составил **0,770%**, 95% интервал **0,558–0,983%**. Выплаты составили **4,830 проекта/ч** с интервалом **4,792–4,869**. В серии технических отказов не зарегистрировано. Верхняя граница SLA ниже 5%, нижняя граница выплат выше 4,4 проекта/ч. [Валидация 2/3/6](../results/processed/optquest_winner_validation.csv) · [Первичные прогоны](../results/raw/optquest_winner_validation.jsonl)
+
 Для приёмки фактически выполненного запуска скрипт проверяет комбинации, независимость seeds, границы решений и восстановление целевой функции.
 
 ```powershell
 python experiments/accept_experiments.py Tuning --source .local/run-tuning/temp
 python experiments/accept_experiments.py Variation --source .local/run-variation/temp
 python experiments/accept_experiments.py OptQuest --source .local/run-optquest/temp
+python analysis/teacher_results.py 4 --verify-native-optquest
 ```

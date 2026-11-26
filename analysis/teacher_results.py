@@ -159,14 +159,42 @@ def section_five(native=False):
     save_figure(fig,figure_name)
 
 
+def verify_native_optquest():
+    native = PROCESSED.parent / "native/experiments"
+    with (native / "optquest_best.csv").open(encoding="utf-8", newline="") as stream:
+        best = next(csv.DictReader(stream))
+    with (native / "optquest_replications.csv").open(encoding="utf-8", newline="") as stream:
+        search_seeds = {int(row["trial_seed"]) for row in csv.DictReader(stream)}
+    seeds = range(5601, 5611)
+    assert search_seeds.isdisjoint(seeds)
+    capacities = {resource: int(float(best[resource.lower()])) for resource in ("R2", "R3", "R4")}
+    rate = float(best["arrival_rate"])
+    trials = run_series("optquest_winner_validation.jsonl", [
+        ("optquest_winner", seed, rate, capacities, 2160, True, {}) for seed in seeds
+    ])
+    measured = [metrics(record) for record in trials]
+    summary = [dict(**capacities, cost=int(float(best["cost"])), metric=key,
+                    **interval(row[key] for row in measured)) for key in measured[0]]
+    save_csv(PROCESSED / "optquest_winner_validation.csv", summary)
+    for row in summary:
+        if row["metric"] in {"payouts", "sla_failure", "technical"}:
+            print(f"{row['metric']}: {row['mean']:.5f} [{row['lo']:.5f}, {row['hi']:.5f}]")
+
+
 if __name__ == "__main__":
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("stage",type=int,choices=(4,5))
     parser.add_argument("--native",action="store_true",help="График по нативному ряду Markov")
+    parser.add_argument("--verify-native-optquest", action="store_true",
+                        help="Перепроверить конфигурацию OptQuest десятью независимыми прогонами DES")
     args = parser.parse_args()
     if args.native and args.stage != 5:
         parser.error("--native требует этап 5")
-    if args.stage == 4:
+    if args.verify_native_optquest and args.stage != 4:
+        parser.error("--verify-native-optquest требует этап 4")
+    if args.verify_native_optquest:
+        verify_native_optquest()
+    elif args.stage == 4:
         section_four()
     else:
         section_five(args.native)
