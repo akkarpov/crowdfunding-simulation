@@ -26,5 +26,5 @@
 
 ```powershell
 .\experiments\launch_anylogic.ps1 -Task DES
-python experiments/accept_native.py research
+python experiments/accept_native.py research --source .local/run-des/temp
 ```
