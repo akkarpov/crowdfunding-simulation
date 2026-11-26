@@ -21,6 +21,7 @@
 ## Графики и воспроизведение
 
 - [Загрузка, обслуживание и отказы по ресурсам](../figures/native_resource_metrics.png)
+- [Экран DES во время контрольного сценария, 2D и 3D](../figures/native_des.png)
 - [Средняя длина и среднее ожидание](../figures/native_queue_summary.png)
 - [Очереди во времени](../figures/native_queue.png) · [Занятость во времени](../figures/native_utilization.png) · [Гистограммы ожидания](../figures/native_wait.png)
 

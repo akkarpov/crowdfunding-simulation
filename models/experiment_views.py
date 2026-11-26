@@ -110,7 +110,7 @@ void resetResultsPanel() {{
     resultRows.clear();
     for (ShapeText[] row : resultCells()) for (ShapeText cell : row) cell.setText("—");
     panelProgress.setText("Ожидание запуска");
-    {"panelHasObjectivePoint = false; for (int i = 0; i < 101; i++) convergence.setPoint(i,0,0);" if optimize else ""}
+{"    panelHasObjectivePoint = false; for (int i = 0; i < 101; i++) convergence.setPoint(i,0,0);" if optimize else ""}
 }}
 void recordTrial(String[] row) {{
     trialsCaptured++;
