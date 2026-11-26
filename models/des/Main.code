@@ -355,7 +355,7 @@ double moderationFailure() {
     }
     return mature > 0 ? (double) late / mature : 1;
 }
-void logRun(String exp) {
+String[] logRun(String exp) {
     long visits = 0;
     double totalWait = 0, totalBusy = 0;
     for (int i = 0; i < 8; i++) {
@@ -368,20 +368,21 @@ void logRun(String exp) {
     double p95 = decisions.isEmpty() ? Double.NaN
         : decisions.get((int)Math.ceil(.95 * decisions.size()) - 1);
     String row = String.format(java.util.Locale.ROOT,
-        "%s,%d,%.6f,%.3f,%d,%d,%d,%.9f,%.9f,%.9f,%.9f,%.9f,%.9f,%.9f,%.9f,%.9f,%.0f%n",
+        "%s,%d,%.6f,%.3f,%d,%d,%d,%.9f,%.9f,%.9f,%.9f,%.9f,%.9f,%.9f,%.9f,%.9f,%.9f,%.0f%n",
         exp, trialSeed, time(), arrivalRate, r2Capacity, r3Capacity, r4Capacity,
         terminal / time(), payoutRate(), visits == 0 ? Double.NaN : totalWait / visits,
         java.util.Arrays.stream(queueArea).sum() / time(),
         totalBusy / (java.util.Arrays.stream(capacity).sum() * time()), sumUtilization(),
-        moderationFailure(), p95, optimizationScore(),cost());
+        moderationFailure(), technicalFailure(), p95, optimizationScore(),cost());
     try {
         java.nio.file.Path path = java.nio.file.Path.of(System.getProperty("java.io.tmpdir"),
-            "crowdfunding-native-experiments.csv");
+            "crowdfunding-native-experiments-" + exp + ".csv");
         if (!java.nio.file.Files.exists(path)) java.nio.file.Files.writeString(path,
             "experiment,trial_seed,window_h,arrival_rate,r2,r3,r4,throughput,payouts,mean_wait_h," +
-            "mean_queue,weighted_utilization,sum_utilization,sla_failure,p95_hrs,objective,cost\n");
+            "mean_queue,weighted_utilization,sum_utilization,sla_failure,technical_failure,p95_hrs,objective,cost\n");
         java.nio.file.Files.writeString(path,row,java.nio.file.StandardOpenOption.APPEND);
     } catch (java.io.IOException e) { throw new RuntimeException(e); }
+    return row.strip().split(",");
 }
 
 void appendSnapshot() {

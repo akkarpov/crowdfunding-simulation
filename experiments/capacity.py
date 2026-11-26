@@ -83,19 +83,31 @@ def run_series(filename, jobs):
     path = RAW / filename
     path_pending = path.with_suffix(".part")
     metrics_old = {}
-    if path.exists():
+    rebuild = os.environ.get("CROWDFUNDING_REBUILD") == "1"
+    if path.exists() and not rebuild:
         return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
-    if path_pending.exists():
+    if path_pending.exists() and not rebuild:
         for line in path_pending.read_text(encoding="utf-8").splitlines():
             r = json.loads(line)
             metrics_old[(r["scenario"], r["seed"])] = r
     jobs = [job for job in jobs if tuple(job[:2]) not in metrics_old]
-    with path_pending.open("a", encoding="utf-8", newline="\n") as out:
-        with ProcessPoolExecutor(max_workers=min(5, os.cpu_count() or 1)) as executor:
-            for result in executor.map(run_job, jobs):
+    workers = max(1, int(os.environ.get("CROWDFUNDING_WORKERS", min(5, os.cpu_count() or 1))))
+    with path_pending.open("w" if rebuild else "a", encoding="utf-8", newline="\n") as out:
+        def save(results):
+            for result in results:
                 metrics_old[(result["scenario"], result["seed"])] = result
                 out.write(json.dumps(result, ensure_ascii=False, separators=(",", ":")) + "\n")
                 out.flush()
+
+        try:
+            executor = ProcessPoolExecutor(max_workers=workers) if workers > 1 else None
+        except PermissionError:
+            executor = None
+        if executor is None:
+            save(map(run_job, jobs))
+        else:
+            with executor:
+                save(executor.map(run_job, jobs))
     path_pending.replace(path)
     return list(metrics_old.values())
 

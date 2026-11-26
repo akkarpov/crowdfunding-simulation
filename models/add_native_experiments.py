@@ -4,6 +4,8 @@ from pathlib import Path
 import sys
 import xml.etree.ElementTree as ET
 
+from experiment_views import add_result_panel
+
 install = Path(sys.argv[1])
 root = Path(__file__).resolve().parent
 examples = next((install/"plugins").glob("com.anylogic.examples_*"))
@@ -153,6 +155,9 @@ for i,(name,y,minimum,maximum,initial,action) in enumerate([
         set_text(ext,key,value)
     ext.remove(ext.find("Link"))
 experiments.append(tuning)
+
+add_result_panel(variation, style, optimize=False)
+add_result_panel(optimization, style, optimize=True)
 
 ET.indent(doc,space="  ")
 doc.write(path,encoding="utf-8",xml_declaration=True)
