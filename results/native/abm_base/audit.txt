@@ -1,0 +1,4 @@
+Время 2019.40 ч · seed 2501 · поступило 10096 · завершилось 10000 · выплат 9590 · активных 68 · SLA 17.5%
+reason=project_limit arrivals=10096 terminal=10000 unfinished=96 payouts=9590 carriers=374
+confirmed=123878914 held=416011 paid=122607557 refunded=855346 recorded=152461 attempts=158378
+served=[10096, 8088, 2614, 158085, 162188, 5525, 581, 9590]

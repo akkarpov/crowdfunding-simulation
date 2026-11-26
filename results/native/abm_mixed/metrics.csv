@@ -1,0 +1,2 @@
+window_h,arrived,terminal,unfinished,payouts,technical,records,retries,mean_cycle_h,p50_cycle_h,p90_cycle_h,p95_cycle_h,p99_cycle_h,sla_mature,sla_missed,total_utilization
+2017.23365589,10079,10000,79,8867,948,140598,5006,16.49764084,13.23487292,37.35664798,44.00678263,55.69589707,10040,2729,0.53724817

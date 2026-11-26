@@ -26,6 +26,14 @@ def value(text,key):
     return int(m[1])
 
 
+ABM_CASES = ("abm_sim", "abm_base", "abm_mixed", "abm_mixedpriority")
+
+
+def full_stop(log, hours):
+    return (("reason=project_limit" in log and value(log, "terminal") == 10000)
+            or ("reason=horizon" in log and 2159.999 < hours <= 2160))
+
+
 def accept_des(case,seed,source):
     log=source/f"crowdfunding-platform-{case}-{seed}.txt"
     prefix=f"crowdfunding-native-{case}-{seed}-"
@@ -43,7 +51,8 @@ def accept_des(case,seed,source):
     for key in ("arrived","terminal","unfinished","payouts","technical","records","retries"):
         assert int(metrics[key])>=0
     assert int(metrics["sla_mature"])>=int(metrics["sla_missed"])>=0
-    assert sum((int(r["served"]) for r in stats))>50000 if case=="research" else True
+    if case == "research" or case in ABM_CASES[1:]:
+        assert sum(int(r["served"]) for r in stats) > 50000
     for resource in stats:
         selector=[r for r in trace if r["resource"]==resource["resource"]]
         assert np.all(np.diff([float(r["hour"]) for r in selector])>=0)
@@ -56,21 +65,64 @@ def accept_des(case,seed,source):
         "count": lambda: "reason=project_limit" in text and value(text,"terminal")==2 and h<4.5,
         "zero": lambda: "reason=horizon" in text and value(text,"arrivals")==0 and 9.999<h<=10,
         "congestion": lambda: any(int(r["refused"])>0 for r in stats),
-        "research": lambda: ("reason=project_limit" in text and value(text,"terminal")==10000
-                             or "reason=horizon" in text and 2159.999<h<=2160),
-        "abm_sim": lambda: value(text,"payouts")==3 and all(int(r["served"])>0 for r in stats),
+        "research": lambda: full_stop(text, h),
+        **{name: lambda: full_stop(text, h) for name in ABM_CASES[1:]},
+        "abm_sim": lambda: (4.499 < h <= 4.5 and value(text, "payouts") == 3
+                            and all(int(r["served"]) > 0 for r in stats)),
     }
     assert cases[case](),(case,text)
+    extra_class=source/f"{prefix}classes.csv"
+    if case in ABM_CASES:
+        classes = {row["class"]: row for row in read_csv(extra_class)}
+        assert set(classes) == {"light", "heavy"}
+        assert sum(int(row["projects"]) for row in classes.values()) == int(metrics["arrived"])
+        for row in classes.values():
+            if int(row["visits_r3"]) > 0:
+                assert np.isfinite(float(row["p95_wait_h"])) and float(row["p95_wait_h"]) >= 0
+        if case == "abm_base":
+            assert int(classes["heavy"]["projects"]) == 0
+        elif case in ABM_CASES[2:]:
+            assert all(int(row["projects"]) > 0 and int(row["visits_r3"]) > 0
+                       for row in classes.values())
     dest=ROOT/"results/native"/case
     dest.mkdir(parents=True,exist_ok=True)
     for name,path in {"audit":log,**outputs}.items():
         shutil.copyfile(path,dest/(name+path.suffix))
-    extra_class=source/f"{prefix}classes.csv"
-    if extra_class.exists():
-        shutil.copyfile(extra_class,dest/"classes.csv")
+    if case in ABM_CASES:
+        shutil.copyfile(extra_class, dest / "classes.csv")
     if case=="research":
         graphs(trace, waits, stats)
     print(f"{case}: окно {h:.6f} ч, инварианты подтверждены")
+
+
+def compare_agents():
+    destination = ROOT / "results/processed/abm_native.csv"
+    experiments = {"research": "DES", "abm_base": "ABM, база", "abm_mixed": "ABM, 25% тяжёлых",
+                   "abm_mixedpriority": "ABM, приоритет лёгких"}
+    records = []
+    for name, label in experiments.items():
+        folder = ROOT / "results/native" / name
+        metrics, = read_csv(folder / "metrics.csv")
+        resources = read_csv(folder / "resources.csv")
+        manual = next(r for r in resources if r["resource"] == "R3")
+        hours = float(metrics["window_h"])
+        row = dict(case=name, experiment=label, hours=hours,
+                   throughput=int(metrics["terminal"]) / hours,
+                   payouts=int(metrics["payouts"]) / hours,
+                   mean_queue=sum(float(x["mean_queue"]) for x in resources),
+                   r3_mean_queue=float(manual["mean_queue"]),
+                   sla_failure=int(metrics["sla_missed"]) / int(metrics["sla_mature"]),
+                   light_p95_r3_h="", heavy_p95_r3_h="")
+        if name != "research":
+            for group in read_csv(folder / "classes.csv"):
+                if int(group["visits_r3"]) > 0:
+                    row[f"{group['class']}_p95_r3_h"] = float(group["p95_wait_h"])
+        records.append(row)
+    with destination.open("w", encoding="utf-8", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=records[0])
+        writer.writeheader()
+        writer.writerows(records)
+    print(f"Сопоставлены четыре нативных опыта: {destination}")
 
 
 def graphs(trace, waits, stats):
@@ -122,8 +174,12 @@ def graphs(trace, waits, stats):
 
 if __name__=="__main__":
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("case",choices=("simulation","count","zero","congestion","research","abm_sim"))
+    parser.add_argument("case",choices=("simulation","count","zero","congestion","research", *ABM_CASES,
+                                       "abm_comparison"))
     parser.add_argument("--seed",type=int,default=2501)
     parser.add_argument("--source",type=Path,default=Path(tempfile.gettempdir()))
     args=parser.parse_args()
-    accept_des(args.case,args.seed,args.source)
+    if args.case == "abm_comparison":
+        compare_agents()
+    else:
+        accept_des(args.case,args.seed,args.source)
