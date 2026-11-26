@@ -1,0 +1,464 @@
+// Код Main для нативной DES. Блоки Source, Service, ResourcePool и Sink создаёт build_platform.py.
+static final class Project {
+    final int id, route;
+    final double start, rate;
+    final long target;
+    final boolean fraud;
+    double decision = Double.NaN;
+    int pending, donations;
+    long held;
+    boolean open, settling, terminal, manual, suspicion;
+    Project(int id, int route, double start, double rate, long target, boolean fraud) {
+        this.id = id;
+        this.route = route;
+        this.start = start;
+        this.rate = rate;
+        this.target = target;
+        this.fraud = fraud;
+    }
+}
+static final class Donation {
+    final Project project;
+    final long amount;
+    final double entered;
+    int attempts;
+    boolean credited, finished;
+    Donation(Project project, long amount, double entered) {
+        this.project = project;
+        this.amount = amount;
+        this.entered = entered;
+    }
+}
+static final class SupportRequest {
+    final Project project;
+    final double entered;
+    final Runnable resume, fail;
+    SupportRequest(Project project, double entered, Runnable resume, Runnable fail) {
+        this.project = project;
+        this.entered = entered;
+        this.resume = resume;
+        this.fail = fail;
+    }
+}
+static final class Ticket {
+    final double submitted;
+    double serviceStart;
+    final Runnable complete;
+    Ticket(double submitted, Runnable complete) {
+        this.submitted = submitted;
+        this.complete = complete;
+    }
+}
+
+final java.util.Random[] draws = new java.util.Random[7];
+final java.util.List<Project> projects = new java.util.ArrayList<>();
+final java.util.List<Double> decisions = new java.util.ArrayList<>();
+final java.util.ArrayDeque<Agent> freeCarriers = new java.util.ArrayDeque<>();
+final java.util.List<java.util.List<Double>> resourceWaits = new java.util.ArrayList<>();
+final java.util.List<Double> cycleTimes = new java.util.ArrayList<>();
+final double[] serviceTotal = new double[8];
+final int[] maxQueue = new int[8];
+int carriersCreated;
+long trialSeed;
+StringBuilder trace = new StringBuilder("hour,resource,queue,busy,capacity,served,refused\n");
+final java.util.Map<Agent, Ticket> tickets = new java.util.IdentityHashMap<>();
+final int[] waiting = new int[8], busy = new int[8], offered = new int[8], served = new int[8], refused = new int[8];
+final double[] last = new double[8], busyArea = new double[8], queueArea = new double[8], waitTotal = new double[8];
+int[] capacity;
+int arrivals, terminal, technical, payouts, active, publication, records, paymentAttempts, paymentRetries, paymentErrors, appeals, disputes;
+long confirmed, paid, refunds;
+boolean audited;
+double horizon;
+String stopReason = "horizon";
+final String caseName = System.getProperty("crowdfunding.case","simulation");
+
+void startPlatform() {
+    capacity = new int[] {2, r2Capacity, r3Capacity, r4Capacity, 4, 2, 2, 2};
+    if (projectLimit < 1 || arrivalRate < 0 || java.util.Arrays.stream(capacity).anyMatch(n -> n < 1))
+        throw new IllegalArgumentException("Недопустимые параметры");
+    horizon = getEngine().getStopTime();
+    trialSeed = getEngine().getDefaultRandomGenerator().nextLong() ^ seed;
+    for (int i = 0; i < draws.length; i++) draws[i] = new java.util.Random(trialSeed + 10007L * i);
+    for (int i = 0; i < 8; i++) {
+        carriersCreated += capacity[i] + queueLimits[i];
+        resourceWaits.add(new java.util.ArrayList<>());
+    }
+    visitCarriers.inject(carriersCreated);
+    if (detailed) create_Work(0.000001, this::snapshot);
+    if (diagnostic) {
+        // Три отдельные кампании проходят ручную проверку, поддержку и арбитраж.
+        create_Work(.01, () -> newProject(1));
+        create_Work(.02, () -> newProject(3));
+        create_Work(.03, () -> newProject(0));
+    } else if (arrivalRate > 0) {
+        create_Work(exp(1 / arrivalRate, 0), this::arrive);
+    }
+    create_Work(Math.max(0, horizon - 0.000001), this::audit);
+}
+double draw(int stream) { return draws[stream].nextDouble(); }
+double exp(double mean, int stream) { return -mean * Math.log1p(-draw(stream)); }
+
+void integrate(int r) {
+    double duration = time() - last[r];
+    busyArea[r] += duration * busy[r];
+    queueArea[r] += duration * waiting[r];
+    last[r] = time();
+}
+boolean offer(int r, Runnable done) {
+    integrate(r);
+    offered[r]++;
+    if (busy[r] + waiting[r] >= capacity[r] + queueLimits[r]) {
+        refused[r]++;
+        return false;
+    }
+    if (freeCarriers.isEmpty()) throw new IllegalStateException("Нарушена ёмкость пула носителей");
+    Agent carrier = freeCarriers.removeFirst();
+    tickets.put(carrier, new Ticket(time(), done));
+    waiting[r]++;
+    source(r).take(carrier);
+    maxQueue[r] = Math.max(maxQueue[r], waiting[r]);
+    return true;
+}
+com.anylogic.libraries.processmodeling.Enter<Agent> source(int r) {
+    switch (r) {
+        case 0: return inputR1;
+        case 1: return inputR2;
+        case 2: return inputR3;
+        case 3: return inputR4;
+        case 4: return inputR5;
+        case 5: return inputR6;
+        case 6: return inputR7;
+        case 7: return inputR8;
+        default: throw new IllegalArgumentException("Ресурс");
+    }
+}
+void returnCarrier(Agent carrier) { freeCarriers.addLast(carrier); }
+void beginService(int r, Agent agent) {
+    integrate(r);
+    waiting[r]--;
+    busy[r]++;
+    Ticket ticket = tickets.get(agent);
+    ticket.serviceStart = time();
+    double waited = time() - ticket.submitted;
+    waitTotal[r] += waited;
+    if (detailed) resourceWaits.get(r).add(waited);
+}
+double serviceDuration(int r) {
+    return diagnostic ? serviceMeans[r] * .15 : exp(serviceMeans[r], 3);
+}
+void leaveResource(int r, Agent agent) {
+    integrate(r);
+    busy[r]--;
+    served[r]++;
+    Ticket ticket = tickets.remove(agent);
+    serviceTotal[r] += time() - ticket.serviceStart;
+    returnCarrier(agent);
+    // Следующее обращение запускается отдельным событием после освобождения канала.
+    create_Work(0.000000001, ticket.complete);
+}
+
+void arrive() {
+    double v = draw(1);
+    newProject(v < .60 ? 0 : v < .80 ? 1 : v < .95 ? 2 : 3);
+    create_Work(exp(1 / arrivalRate, 0), this::arrive);
+}
+void newProject(int route) {
+    int category = (int) (draw(1) * 3);
+    double multiplier = new double[] {1.15, .90, .95}[category] * (.75 + .5 * draw(1));
+    long target = diagnostic ? 1000 : 8000 + (long)(draw(1) * 8001);
+    Project p = new Project(++arrivals, route, time(),
+        (diagnostic ? 25 : 1.2 * multiplier * (route == 2 ? 2 : 1)), target, draw(1) < .02);
+    projects.add(p);
+    submit(p, 0, () -> { if (route == 1) manual(p, 0); else submit(p, 1, () -> ai(p)); });
+}
+void submit(Project p, int r, Runnable done) {
+    if (!offer(r, done)) { technical++; finish(p, false); }
+}
+void ai(Project p) {
+    p.suspicion = !diagnostic && draw(2) < (p.fraud ? .85 : .08);
+    if (p.suspicion) manual(p, 0); else approve(p);
+}
+void manual(Project p, int attempt) {
+    p.manual = true;
+    submit(p, 2, () -> {
+        boolean flagged = !diagnostic && draw(2) < (p.fraud ? .96 : .015);
+        if (!flagged) approve(p);
+        else if (attempt == 0 && draw(4) < .15) {
+            appeals++;
+            support(new SupportRequest(p, time(), () -> manual(p, 1), () -> reject(p)));
+        } else reject(p);
+    });
+}
+void moderate(Project p) {
+    p.decision = time();
+    decisions.add(p.decision - p.start);
+}
+void approve(Project p) {
+    moderate(p);
+    submit(p, 4, () -> {
+        p.open = true;
+        active++;
+        publication++;
+        create_Work(diagnostic ? 1 : 48, () -> close(p));
+        scheduleDonation(p);
+    });
+}
+void reject(Project p) { moderate(p); finish(p, false); }
+void scheduleDonation(Project p) {
+    create_Work(exp(1 / p.rate, 5), () -> {
+        if (!p.open) return;
+        p.pending++;
+        p.donations++;
+        long amount = diagnostic ? 500 : (long)(500 / Math.pow(1 - draw(5), 1.0 / 2.6));
+        gateway(new Donation(p, amount, time()));
+        scheduleDonation(p);
+    });
+}
+void gateway(Donation d) {
+    d.attempts++;
+    if (d.attempts > 1) paymentRetries++;
+    paymentAttempts++;
+    if (!offer(3, () -> {
+        boolean error = diagnostic ? d.attempts == 1 && d.project.route == 0 : draw(4) < .035;
+        if (error || !offer(4, () -> credit(d))) paymentProblem(d);
+    })) paymentProblem(d);
+}
+void paymentProblem(Donation d) {
+    paymentErrors++;
+    if (d.attempts < 2) {
+        support(new SupportRequest(d.project, time(), () -> gateway(d), () -> completeDonation(d)));
+    } else completeDonation(d);
+}
+void support(SupportRequest request) {
+    if (request.project.terminal) throw new IllegalStateException("Обращение после завершения");
+    if (!offer(5, request.resume)) request.fail.run();
+}
+void credit(Donation d) {
+    Project p = d.project;
+    if (d.credited || d.finished || p.terminal) throw new IllegalStateException("Повторный учёт платежа");
+    d.credited = true;
+    confirmed += d.amount;
+    p.held += d.amount;
+    records++;
+    if (p.held >= p.target) close(p);
+    completeDonation(d);
+}
+void completeDonation(Donation d) {
+    if (d.finished || d.project.pending < 1) throw new IllegalStateException("Завершение платежа");
+    d.finished = true;
+    d.project.pending--;
+    settle(d.project);
+}
+void close(Project p) {
+    if (p.open) {
+        p.open = false;
+        active--;
+        settle(p);
+    }
+}
+void settle(Project p) {
+    if (p.open || p.pending != 0 || p.settling) return;
+    p.settling = true;
+    if (p.held < p.target) finish(p, false);
+    else if (p.route == 3 || (!diagnostic && draw(6) < .01)) {
+        disputes++;
+        submit(p, 6, () -> {
+            if (draw(6) < .10 && !diagnostic) finish(p, false);
+            else payout(p);
+        });
+    } else payout(p);
+}
+void payout(Project p) {
+    if (!p.settling || p.held < p.target) throw new IllegalStateException("Условия выплаты");
+    submit(p, 7, () -> finish(p, true));
+}
+void finish(Project p, boolean success) {
+    if (p.terminal || p.open || p.pending != 0 || p.held < 0)
+        throw new IllegalStateException("Недопустимое завершение");
+    p.terminal = true;
+    terminal++;
+    if (detailed) cycleTimes.add(time() - p.start);
+    if (success) { payouts++; paid += p.held; }
+    else refunds += p.held;
+    p.held = 0;
+    if (terminal == projectLimit) {
+        stopReason = "project_limit";
+        audit();
+        getEngine().finish();
+    }
+}
+
+String summary() {
+    int mature = 0, late = 0;
+    for (Project p : projects) {
+        if (p.start + 8 > time()) continue;
+        mature++;
+        if (Double.isNaN(p.decision) || p.decision - p.start > 8) late++;
+    }
+    return String.format(java.util.Locale.ROOT,
+        "Время %.2f ч · seed %d · поступило %d · завершилось %d · выплат %d · активных %d · SLA %s",
+        time(), seed, arrivals, terminal, payouts, active,
+        mature == 0 ? "нет данных" : String.format(java.util.Locale.ROOT,"%.1f%%",100.0*late/mature));
+}
+String resourceLabel(int r) {
+    return String.format(java.util.Locale.ROOT,"R%d  Очередь %d · занято %d/%d · отказов %d",
+        r+1, waiting[r], busy[r], capacity == null ? 0 : capacity[r], refused[r]);
+}
+void audit() {
+    if (audited) return;
+    audited = true;
+    long held = 0;
+    int open = 0, pending = 0, finished = 0;
+    for (Project p : projects) {
+        held += p.held;
+        if (p.open) open++;
+        if (p.terminal) finished++;
+        pending += p.pending;
+    }
+    if (confirmed != paid + refunds + held || open != active || finished != terminal ||
+        arrivals != projects.size() || pending < 0) throw new IllegalStateException("Баланс платформы");
+    for (int r=0; r<8; r++) {
+        integrate(r);
+        if (busy[r] < 0 || waiting[r] < 0 || offered[r] != served[r]+busy[r]+waiting[r]+refused[r])
+            throw new IllegalStateException("Баланс ресурса R"+(r+1));
+    }
+    if (diagnostic && projectLimit == 10000 && (payouts != 3 || terminal != 3 || disputes != 1 || served[5] == 0 ||
+        java.util.Arrays.stream(served).anyMatch(n -> n == 0))) throw new IllegalStateException("Проверочные ветви");
+    if (freeCarriers.size() + tickets.size() != carriersCreated)
+        throw new IllegalStateException("Баланс носителей");
+    if (detailed) saveDetails();
+    String row = summary() + "\n" +
+        "reason=" + stopReason + " arrivals=" + arrivals + " terminal=" + terminal +
+        " unfinished=" + (arrivals-terminal) + " payouts=" + payouts + " carriers=" + carriersCreated + "\n" +
+        String.format(java.util.Locale.ROOT,"confirmed=%d held=%d paid=%d refunded=%d recorded=%d attempts=%d\n",
+            confirmed,held,paid,refunds,records,paymentAttempts) +
+        "served=" + java.util.Arrays.toString(served) + "\n";
+    traceln(row);
+    if (!detailed) return;
+    try {
+        java.nio.file.Files.writeString(java.nio.file.Path.of(System.getProperty("java.io.tmpdir"),
+            "crowdfunding-platform-"+caseName+"-"+seed+".txt"),row);
+    } catch (java.io.IOException e) { throw new RuntimeException(e); }
+}
+
+double cost() {
+    return 36 + 2 * r2Capacity + 5 * r3Capacity + 3 * r4Capacity;
+}
+double payoutRate() { return time() > 0 ? payouts / time() : 0; }
+double technicalFailure() { return arrivals > 0 ? (double) technical / arrivals : 1; }
+double moderationFailure() {
+    int mature = 0, late = 0;
+    for (Project p : projects) {
+        if (p.start + 8 > time()) continue;
+        mature++;
+        if (Double.isNaN(p.decision) || p.decision - p.start > 8) late++;
+    }
+    return mature > 0 ? (double) late / mature : 1;
+}
+void logRun(String exp) {
+    long visits = 0;
+    double totalWait = 0, totalBusy = 0;
+    for (int i = 0; i < 8; i++) {
+        integrate(i);
+        visits += served[i] + busy[i];
+        totalWait += waitTotal[i];
+        totalBusy += busyArea[i];
+    }
+    java.util.Collections.sort(decisions);
+    double p95 = decisions.isEmpty() ? Double.NaN
+        : decisions.get((int)Math.ceil(.95 * decisions.size()) - 1);
+    String row = String.format(java.util.Locale.ROOT,
+        "%s,%d,%.6f,%.3f,%d,%d,%d,%.9f,%.9f,%.9f,%.9f,%.9f,%.9f,%.9f,%.9f,%.9f,%.0f%n",
+        exp, trialSeed, time(), arrivalRate, r2Capacity, r3Capacity, r4Capacity,
+        terminal / time(), payoutRate(), visits == 0 ? Double.NaN : totalWait / visits,
+        java.util.Arrays.stream(queueArea).sum() / time(),
+        totalBusy / (java.util.Arrays.stream(capacity).sum() * time()), sumUtilization(),
+        moderationFailure(), p95, optimizationScore(),cost());
+    try {
+        java.nio.file.Path path = java.nio.file.Path.of(System.getProperty("java.io.tmpdir"),
+            "crowdfunding-native-experiments.csv");
+        if (!java.nio.file.Files.exists(path)) java.nio.file.Files.writeString(path,
+            "experiment,trial_seed,window_h,arrival_rate,r2,r3,r4,throughput,payouts,mean_wait_h," +
+            "mean_queue,weighted_utilization,sum_utilization,sla_failure,p95_hrs,objective,cost\n");
+        java.nio.file.Files.writeString(path,row,java.nio.file.StandardOpenOption.APPEND);
+    } catch (java.io.IOException e) { throw new RuntimeException(e); }
+}
+
+void appendSnapshot() {
+    for (int i = 0; i < 8; i++) {
+        trace.append(String.format(java.util.Locale.ROOT,
+            "%.8f,R%d,%d,%d,%d,%d,%d%n",time(), i+1,waiting[i],busy[i],capacity[i],served[i],refused[i]));
+    }
+}
+void snapshot() {
+    if (audited) return;
+    appendSnapshot();
+    refreshVisual();
+    double interval = horizon < 60 ? .15 : 1;
+    if (time() + interval < horizon) create_Work(interval, this::snapshot);
+}
+double quantile(java.util.List<Double> input, double probability) {
+    if (input.isEmpty()) return Double.NaN;
+    java.util.List<Double> sorted = new java.util.ArrayList<>(input);
+    java.util.Collections.sort(sorted);
+    double index = probability * (sorted.size() - 1);
+    int lower = (int)Math.floor(index);
+    return sorted.get(lower) + (sorted.get((int)Math.ceil(index)) - sorted.get(lower)) * (index-lower);
+}
+void saveDetails() {
+    appendSnapshot();
+    refreshVisual();
+    String prefix = "crowdfunding-native-" + caseName + "-" + seed + "-";
+    StringBuilder resource = new StringBuilder("resource,offered,served,refused,utilization,mean_service_h,mean_queue,max_queue,mean_wait_h,p95_wait_h\n");
+    StringBuilder waits = new StringBuilder("resource,wait_h\n");
+    for (int i = 0; i < 8; i++) {
+        resource.append(String.format(java.util.Locale.ROOT,
+            "R%d,%d,%d,%d,%.9f,%.9f,%.9f,%d,%.9f,%.9f%n",
+            i+1,offered[i],served[i],refused[i],busyArea[i]/(capacity[i]*time()),
+            served[i] == 0 ? Double.NaN : serviceTotal[i]/served[i], queueArea[i]/time(), maxQueue[i],
+            served[i]+busy[i] == 0 ? Double.NaN : waitTotal[i]/(served[i]+busy[i]),quantile(resourceWaits.get(i),.95)));
+        for (double h : resourceWaits.get(i)) waits.append("R").append(i+1).append(",").append(h).append("\n");
+    }
+    int mature = matureProjects(false);
+    double meanCycle = cycleTimes.stream().mapToDouble(x -> x).average().orElse(Double.NaN);
+    String metrics = "window_h,arrived,terminal,unfinished,payouts,technical,records,retries,mean_cycle_h,p50_cycle_h,p90_cycle_h,p95_cycle_h,p99_cycle_h,sla_mature,sla_missed,total_utilization\n" +
+        String.format(java.util.Locale.ROOT,"%.8f,%d,%d,%d,%d,%d,%d,%d,%.8f,%.8f,%.8f,%.8f,%.8f,%d,%d,%.8f%n",
+            time(),arrivals,terminal,arrivals-terminal,payouts,technical,records,paymentRetries,meanCycle,
+            quantile(cycleTimes,.50),quantile(cycleTimes,.90),quantile(cycleTimes,.95),quantile(cycleTimes,.99),
+            mature,matureProjects(true),weightedUtilization());
+    saveOutput(prefix + "resources.csv", resource.toString());
+    saveOutput(prefix + "trace.csv", trace.toString());
+    saveOutput(prefix + "waits.csv", waits.toString());
+    saveOutput(prefix + "metrics.csv", metrics);
+}
+void saveOutput(String name, String content) {
+    try {
+        java.nio.file.Files.writeString(java.nio.file.Path.of(System.getProperty("java.io.tmpdir"),name),content);
+    } catch(java.io.IOException e) {
+        throw new RuntimeException(e);
+    }
+}
+int matureProjects(boolean missedOnly) {
+    int count = 0;
+    for (Project p : projects) {
+        if (p.start + 8 > time()) continue;
+        if (!missedOnly || Double.isNaN(p.decision) || p.decision-p.start > 8) count++;
+    }
+    return count;
+}
+double weightedUtilization() {
+    for (int i = 0; i < 8; i++) integrate(i);
+    return time() == 0 ? 0 : java.util.Arrays.stream(busyArea).sum() / (java.util.Arrays.stream(capacity).sum()*time());
+}
+double sumUtilization() {
+    if (time() == 0) return 0;
+    double sum = 0;
+    for (int i = 0; i < 8; i++) {
+        integrate(i);
+        sum += busyArea[i] / (capacity[i] * time());
+    }
+    return sum;
+}
+double optimizationScore() {
+    return time() == 0 ? 0 : .65 * terminal / (5*time()) - .35 * sumUtilization() / 8;
+}

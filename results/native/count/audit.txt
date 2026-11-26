@@ -1,0 +1,4 @@
+Время 0.36 ч · seed 2501 · поступило 3 · завершилось 2 · выплат 2 · активных 0 · SLA нет данных
+reason=project_limit arrivals=3 terminal=2 unfinished=1 payouts=2 carriers=374
+confirmed=4000 held=1000 paid=3000 refunded=0 recorded=8 attempts=12
+served=[3, 2, 1, 12, 11, 4, 0, 2]

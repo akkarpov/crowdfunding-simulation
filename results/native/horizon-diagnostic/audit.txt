@@ -1,0 +1,4 @@
+Время 2160.00 ч · seed 2501 · поступило 3 · завершилось 3 · выплат 3 · активных 0 · SLA 0.0%
+reason=horizon arrivals=3 terminal=3 unfinished=0 payouts=3 carriers=374
+confirmed=4000 held=0 paid=4000 refunded=0 recorded=8 attempts=12
+served=[3, 2, 1, 12, 11, 4, 1, 3]
